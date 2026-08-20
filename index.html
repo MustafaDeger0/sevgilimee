@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>İyi ki Doğdun Sevgilim</title>
-    <!-- Google Fonts -->
+    <!-- Eski romantik fontlara geri dönüldü -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-dark-red: #5a0002;
             --bg-white: #fdfbfb;
-            --accent-gold: #d4af37;
+            --accent-color: #ffffff; /* Bembeyaz detaylar */
             --text-dark: #2c2c2c;
             --text-light: #fff;
         }
@@ -23,8 +23,7 @@
         }
 
         body, html {
-            /* iPhone Safari bar sorunu için 100dvh kullanıyoruz */
-            height: 100dvh; 
+            height: 100dvh; /* iPhone Safari düzeltmesi */
             width: 100vw;
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-dark-red);
@@ -33,7 +32,7 @@
 
         /* --- TAM SAYFA GEÇİŞ SİSTEMİ --- */
         .container {
-            height: 100dvh; /* Dinamik Viewport Yüksekliği */
+            height: 100dvh;
             width: 100%;
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
@@ -54,20 +53,24 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            /* iPhone'larda kenarlara yapışmaması için güvenli boşluk */
             padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px;
             overflow: hidden;
         }
 
         /* --- TİPOGRAFİ --- */
-        h1, h2 { font-family: 'Dancing Script', cursive; text-align: center; }
-        .serif-text { font-family: 'Playfair Display', serif; }
+        h1, h2, h3 { 
+            font-family: 'Dancing Script', cursive; 
+            text-align: center; 
+        }
+        .serif-text { 
+            font-family: 'Playfair Display', serif; 
+        }
 
         /* Yönlendirme İpucu (Ok) */
         .scroll-indicator {
             position: absolute;
             bottom: 25px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.9);
             font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -77,15 +80,16 @@
             flex-direction: column;
             align-items: center;
             gap: 5px;
+            font-family: 'Poppins', sans-serif;
         }
         .scroll-indicator span { font-size: 1.2rem; }
         @keyframes pulse {
-            0%, 100% { opacity: 0.4; transform: translateY(0); }
+            0%, 100% { opacity: 0.5; transform: translateY(0); }
             50% { opacity: 1; transform: translateY(-5px); }
         }
 
         /* --- SLAYT 1: ZARF --- */
-        .slide-envelope { background: linear-gradient(135deg, #fdfbfb 0%, #f4e9e9 100%); color: var(--text-dark); }
+        .slide-envelope { background: var(--bg-white); color: var(--text-dark); }
         .envelope-container { text-align: center; cursor: pointer; padding: 20px; }
         .envelope-icon {
             width: 260px; height: 160px;
@@ -100,10 +104,11 @@
             border-radius: 8px 8px 0 0; z-index: 1;
         }
         .seal {
-            width: 45px; height: 45px; background: radial-gradient(circle, var(--accent-gold) 40%, #b8860b 100%);
+            width: 45px; height: 45px; 
+            background: var(--accent-color); 
             border-radius: 50%; position: absolute; z-index: 2;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-            display: flex; justify-content: center; align-items: center; color: white; font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex; justify-content: center; align-items: center; color: var(--bg-dark-red); font-size: 1.1rem;
             animation: heartbeat 1.5s infinite;
         }
         @keyframes heartbeat {
@@ -120,89 +125,92 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(90,0,2,0.8)); z-index: 1;
         }
         .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 10px; }
-        .slide-hero h1 { font-size: 4rem; text-shadow: 2px 4px 15px rgba(0,0,0,0.6); color: var(--accent-gold); margin-bottom: 5px; }
+        .slide-hero h1 { font-size: 4.5rem; text-shadow: 2px 4px 15px rgba(0,0,0,0.6); color: var(--accent-color); margin-bottom: 10px; line-height: 1.2; }
 
         /* --- SLAYT 3: MEKTUP --- */
-        .slide-letter { background: radial-gradient(circle at center, #7a0005 0%, var(--bg-dark-red) 100%); }
+        .slide-letter { background: var(--bg-dark-red); }
         .letter-paper {
-            background: #fffcf8; padding: 35px 25px; max-width: 650px; width: 95%;
+            background: #ffffff; padding: 35px 30px; max-width: 650px; width: 95%;
             border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border-left: 2px solid var(--accent-gold);
+            border-left: 4px solid var(--bg-dark-red); 
         }
-        .letter-paper h2 { color: var(--bg-dark-red); font-size: 2.2rem; margin-bottom: 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.4); padding-bottom: 10px; }
-        .letter-paper p { font-size: 0.95rem; line-height: 1.7; color: #333; margin-bottom: 12px; }
+        .letter-paper h2 { color: var(--bg-dark-red); font-size: 2.5rem; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .letter-paper p { font-size: 1.05rem; line-height: 1.8; color: #222; margin-bottom: 15px; }
 
         /* --- SLAYT 4: POLAROID YAZI --- */
         .slide-split { background-color: var(--bg-white); flex-direction: row; gap: 40px; }
-        .polaroid { background: #fff; padding: 12px 12px 40px 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); transform: rotate(-3deg); max-width: 300px; }
+        .polaroid { background: #fff; padding: 12px 12px 40px 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); transform: rotate(-3deg); max-width: 300px; border: 1px solid #eaeaea; }
         .polaroid img { width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; border-radius: 2px; }
         .split-text { max-width: 450px; color: var(--text-dark); }
-        .split-text h2 { color: var(--bg-dark-red); font-size: 2.5rem; margin-bottom: 15px; text-align: left; }
-        .split-text p { font-size: 1rem; line-height: 1.7; color: #555; }
+        .split-text h2 { color: var(--bg-dark-red); font-size: 2.8rem; margin-bottom: 15px; text-align: left; }
+        .split-text p { font-size: 1.1rem; line-height: 1.8; color: #444; }
 
-        /* --- SLAYT 5: MÜZİK VE FİLM ŞERİDİ (iPhone Fix) --- */
+        /* --- SLAYT 5: MÜZİK VE FİLM ŞERİDİ --- */
         .slide-music {
             background-color: var(--bg-dark-red);
-            /* Mobilde taşmayı önlemek için ortalamayı sıkılaştırıyoruz */
             justify-content: center; align-items: center; gap: 20px;
         }
+        
         .music-player {
             background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.2); width: 95%; max-width: 380px;
+            border: 1px solid rgba(255, 255, 255, 0.3); width: 95%; max-width: 380px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
         }
-        .music-player h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--accent-gold); }
+        .music-player h3 { font-size: 2.2rem; margin-bottom: 15px; color: var(--accent-color); }
         
         .film-strip {
             display: flex; flex-direction: row; justify-content: center; gap: 10px;
             background: #111; padding: 15px 10px; width: 95%; max-width: 380px;
-            border-top: 5px dashed #333; border-bottom: 5px dashed #333;
+            border-top: 5px dashed #444; border-bottom: 5px dashed #444;
             box-shadow: 0 10px 20px rgba(0,0,0,0.6);
         }
         .film-strip img {
-            width: calc(33.33% - 10px); /* 3 fotoğrafı yana sığdır */
-            aspect-ratio: 1/1; object-fit: cover; filter: sepia(20%) contrast(110%);
+            width: calc(33.33% - 10px);
+            aspect-ratio: 1/1; object-fit: cover; filter: sepia(10%) contrast(110%);
         }
 
         /* --- SLAYT 6: GALERİ --- */
-        .slide-gallery { background-image: radial-gradient(circle at top right, #7a0005 0%, var(--bg-dark-red) 100%); }
+        .slide-gallery { background-color: var(--bg-dark-red); }
         .gallery-row { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
-        .gallery-row .polaroid { max-width: 135px; padding: 8px 8px 25px 8px; }
+        .gallery-row .polaroid { max-width: 140px; padding: 8px 8px 25px 8px; }
         .gallery-row .polaroid:nth-child(1) { transform: rotate(-5deg); }
         .gallery-row .polaroid:nth-child(2) { transform: rotate(4deg); margin-top: 15px; }
         .gallery-row .polaroid:nth-child(3) { transform: rotate(-3deg); }
         .gallery-row .polaroid:nth-child(4) { transform: rotate(5deg); margin-top: 10px; }
-        .gallery-text { color: var(--accent-gold); text-align: center; font-size: 1.1rem; line-height: 1.6; padding: 0 15px; }
+        .gallery-text { color: var(--accent-color); text-align: center; font-size: 1.3rem; line-height: 1.7; padding: 0 15px; }
 
-        /* --- MOBİL ÖZEL UYARLAMALAR (iPhone 11/13 Odaklı) --- */
+        /* --- MOBİL ÖZEL UYARLAMALAR --- */
         @media (max-width: 768px) {
             .slide-split { flex-direction: column; text-align: center; gap: 20px; }
-            .split-text h2 { text-align: center; font-size: 2.2rem; }
+            .split-text h2 { text-align: center; font-size: 2.5rem; }
             .polaroid { max-width: 220px; margin: 0 auto; }
-            .slide-hero h1 { font-size: 3rem; }
-            .slide-music { flex-direction: column; }
+            .slide-hero h1 { font-size: 3.5rem; }
+            .letter-paper p { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- GİZLİ MÜZİK ÇALAR (Şarkının kesin çalmasını sağlayan kısım) -->
+    <audio id="bgMusic" src="hileli.mp3" loop></audio>
+
     <div class="container" id="mainContainer">
 
         <!-- SLAYT 1 -->
         <section class="slide slide-envelope">
-            <!-- Tıklanınca ilk slayta inme etkileşimi (Tarayıcıya kullanıcının sayfada aktif olduğunu kanıtlar) -->
-            <div class="envelope-container" onclick="document.getElementById('mainContainer').scrollBy(0, window.innerHeight)">
-                <h2 style="color: var(--bg-dark-red); font-size: 2.2rem;">Sana Bir Mesaj Var!</h2>
+            <div class="envelope-container" onclick="startExperience()">
+                <h2 style="color: var(--bg-dark-red); font-size: 2.5rem; margin-bottom: 10px;">Sana Bir Mesaj Var!</h2>
                 <div class="envelope-icon"><div class="seal">❤️</div></div>
-                <p style="color: #666; font-size: 0.9rem; font-style: italic;">Zarfı açmak için tıkla veya aşağı kaydır</p>
+                <p style="color: #666; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">Zarfı açmak için dokun</p>
             </div>
         </section>
 
         <!-- SLAYT 2 -->
         <section class="slide slide-hero">
             <div class="hero-content">
-                <h1>İyi ki Doğdun Sevgilim!</h1>
-                <p class="serif-text" style="font-size: 1.2rem; letter-spacing: 1px;">Birlikte Nice Mutlu Yıllara...</p>
+                <h1>İyi ki Doğdun<br>Sevgilim!</h1>
+                <p class="serif-text" style="font-size: 1.3rem; letter-spacing: 1px;">Birlikte Nice Mutlu Yıllara...</p>
             </div>
             <div class="scroll-indicator">Aşağı Kaydır <span>↓</span></div>
         </section>
@@ -213,9 +221,9 @@
                 <h2>Senin İçin Bir Mektup</h2>
                 <p>Hayatın karşıma çıkardığı en güzel şanssın. Önümüzdeki yıllarda da ellerimiz hiç ayrılmasın, kahkahalarımız birbirine karışsın.</p>
                 <p>Beraber büyüyeceğimiz, yeni başarılar kutlayacağımız, dünyayı gezeceğimiz ve en zor anlarda bile birbirimize sığınacağımız nice mutlu yıllarımız olsun.</p>
-                <p style="text-align: right; font-weight: 600; margin-top: 15px; color: var(--bg-dark-red); font-size: 1.1rem;">Seni Çok Seviyorum ❤️</p>
+                <p style="text-align: right; font-weight: 600; margin-top: 20px; color: var(--bg-dark-red); font-size: 1.15rem;">Seni Çok Seviyorum ❤️</p>
             </div>
-            <div class="scroll-indicator" style="color: rgba(255,255,255,0.6);">Aşağı Kaydır <span>↓</span></div>
+            <div class="scroll-indicator" style="color: rgba(255,255,255,0.7);">Aşağı Kaydır <span>↓</span></div>
         </section>
 
         <!-- SLAYT 4 -->
@@ -224,26 +232,25 @@
             <div class="split-text serif-text">
                 <h2>Güzel Anılarımız...</h2>
                 <p>Seninle geçen her gün, hayatıma kattığın anlamı biraz daha büyütüyor. Birlikte güldüğümüz, gezdiğimiz ve paylaştığımız her an benim için paha biçilemez.</p>
-                <p style="margin-top: 10px; font-weight: bold; color: var(--bg-dark-red);">İyi ki benimlesin.</p>
+                <p style="margin-top: 15px; font-weight: 600; color: var(--bg-dark-red);">İyi ki benimlesin.</p>
             </div>
             <div class="scroll-indicator" style="color: #999;">Aşağı Kaydır <span>↓</span></div>
         </section>
 
-        <!-- SLAYT 5 (OTOMATİK ÇALACAK MÜZİK BÖLÜMÜ) -->
-        <section class="slide slide-music" id="musicSlide">
+        <!-- SLAYT 5 (FİLM ŞERİDİ VE SPOTIFY GÖRÜNÜMÜ) -->
+        <section class="slide slide-music">
             <div class="music-player">
-                <h3 style="font-family: 'Dancing Script', cursive;">Bizi Hatırlatan Şarkı</h3>
-                <!-- Spotify Iframe -->
-                <iframe id="spotifyPlayer" style="border-radius:12px" src="https://open.spotify.com/embed/track/4eBE6hpwm7aJxIY4iwgwU8?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <h3>Bizi Hatırlatan Şarkı</h3>
+                <!-- Spotify Görseli Geri Döndü -->
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4eBE6hpwm7aJxIY4iwgwU8?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
             
-            <!-- Aşağı Düşmesi Engellenen Film Şeridi -->
             <div class="film-strip">
                 <img src="2.jpeg" alt="Film 1">
                 <img src="3.jpeg" alt="Film 2">
                 <img src="4.jpeg" alt="Film 3">
             </div>
-            <div class="scroll-indicator" style="color: rgba(255,255,255,0.6);">Aşağı Kaydır <span>↓</span></div>
+            <div class="scroll-indicator" style="color: rgba(255,255,255,0.7);">Aşağı Kaydır <span>↓</span></div>
         </section>
 
         <!-- SLAYT 6 -->
@@ -254,38 +261,21 @@
                 <div class="polaroid"><img src="7.jpeg" alt="Galeri 3"></div>
                 <div class="polaroid"><img src="8.jpeg" alt="Galeri 4"></div>
             </div>
-            <p class="gallery-text serif-text">Beni dünyanın en şanslı insanı yaptığın için teşekkür ederim. Hayatımın en büyük parçası olduğun için teşekkürler.<br>İyi ki doğdun!</p>
+            <p class="gallery-text serif-text">Beni dünyanın en şanslı insanı yaptığın için teşekkür ederim.<br><br>İyi ki doğdun!</p>
         </section>
 
     </div>
 
-    <!-- MÜZİK OTOMATİK OYNATMA SCRİPTİ -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const musicSlide = document.getElementById('musicSlide');
-            const spotifyPlayer = document.getElementById('spotifyPlayer');
-            const originalSrc = spotifyPlayer.src;
-
-            // Gözlemci (Observer) - Kullanıcı o slayta geldiğini anlar
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    // Eğer müzik slaytı ekrandaysa ve linkte autoplay yoksa ekle
-                    if (entry.isIntersecting) {
-                        if (!spotifyPlayer.src.includes('autoplay=1')) {
-                            // Spotify linkine otomatik oynatma komutu ekliyoruz
-                            spotifyPlayer.src = originalSrc + '&autoplay=1';
-                        }
-                    } else {
-                        // Müzik sayfasından çıkarsa müziği durdurmak için iframe'i sıfırla
-                        if (spotifyPlayer.src.includes('autoplay=1')) {
-                            spotifyPlayer.src = originalSrc;
-                        }
-                    }
-                });
-            }, { threshold: 0.5 }); // Slaytın %50'si göründüğünde tetikle
-
-            observer.observe(musicSlide);
-        });
+        // Zarf tıklandığında hem MP3'ü kesin başlatır hem de sayfayı aşağı kaydırır
+        function startExperience() {
+            var music = document.getElementById('bgMusic');
+            music.play().catch(function(error) {
+                console.log("Ses oynatma hatası:", error);
+            });
+            
+            document.getElementById('mainContainer').scrollBy(0, window.innerHeight);
+        }
     </script>
 </body>
 </html>
