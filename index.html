@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İyi ki Doğdun Sevgilim</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark-red: #600000; /* Şablondaki bordo renk */
+            --bg-white: #fdfbfb;
+            --text-dark: #333;
+            --text-light: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark-red);
+            overflow: hidden; /* Dış kaydırmayı kapatıyoruz */
+        }
+
+        /* --- TAM SAYFA GEÇİŞ SİSTEMİ (SCROLL SNAP) --- */
+        .container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory; /* Dikeyde slaytlara kilitlen */
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start; /* Her slaytın başlangıcına hizala */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* --- TİPOGRAFİ --- */
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+        }
+        
+        .serif-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- SLAYT 1: ZARF (GİRİŞ) --- */
+        .slide-envelope {
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+        }
+        .envelope-container {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .envelope-container:hover {
+            transform: scale(1.05);
+        }
+        .envelope-icon {
+            width: 250px;
+            height: 150px;
+            background-color: var(--bg-dark-red);
+            position: relative;
+            margin: 20px auto;
+            border-radius: 5px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Basit CSS Zarf Kapağı */
+        .envelope-icon::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            border-left: 125px solid transparent;
+            border-right: 125px solid transparent;
+            border-top: 75px solid #800000;
+        }
+        .seal {
+            width: 40px;
+            height: 40px;
+            background: gold;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* --- SLAYT 2: TAM EKRAN FOTOĞRAF --- */
+        .slide-hero {
+            background-image: url('image.jpeg'); /* 1. Fotoğraf */
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+        }
+        .slide-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); /* Yazı okunsun diye karartma */
+            z-index: 1;
+        }
+        .slide-hero h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 4rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* --- SLAYT 3: MEKTUP --- */
+        .slide-letter {
+            background-color: var(--bg-dark-red);
+        }
+        .letter-paper {
+            background: #fff;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .letter-paper p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        /* --- SLAYT 4: POLAROID & YAZI (BEYAZ ARKA PLAN) --- */
+        .slide-split {
+            background-color: var(--bg-white);
+            flex-direction: row; /* Yan yana */
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .polaroid {
+            background: #fff;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transform: rotate(-3deg);
+            max-width: 300px;
+        }
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+        .split-text {
+            max-width: 400px;
+            color: var(--text-dark);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* --- SLAYT 5: MÜZİK VE FİLM ŞERİDİ --- */
+        .slide-music {
+            background-color: var(--bg-dark-red);
+            flex-direction: row;
+            gap: 50px;
+        }
+        .music-player {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            width: 300px;
+        }
+        .film-strip {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #111;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: rotate(2deg);
+        }
+        .film-strip img {
+            width: 120px;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        /* --- SLAYT 6: POLAROID GALERİSİ --- */
+        .slide-gallery {
+            background-color: var(--bg-dark-red);
+        }
+        .gallery-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery-row .polaroid {
+            max-width: 200px;
+            padding: 10px 10px 30px 10px;
+        }
+        .gallery-row .polaroid:nth-child(even) {
+            transform: rotate(3deg);
+        }
+        .gallery-text {
+            color: white;
+            text-align: center;
+            max-width: 600px;
+            font-size: 1.1rem;
+        }
+
+        /* Yönlendirme İpucu */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-5px); }
+        }
+
+        /* --- MOBİL UYARLAMALAR --- */
+        @media (max-width: 768px) {
+            .slide-split, .slide-music {
+                flex-direction: column; /* Mobilde alt alta dizilsin */
+                text-align: center;
+                gap: 20px;
+            }
+            .slide-hero h1 { font-size: 3rem; }
+            .letter-paper { padding: 25px; }
+            .letter-paper p { font-size: 0.95rem; }
+            .polaroid { max-width: 250px; }
+            .film-strip { flex-direction: row; transform: rotate(0); }
+            .film-strip img { width: 100px; height: 100px; }
+            .gallery-row .polaroid { max-width: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+
+        <!-- SLAYT 1: ZARF -->
+        <section class="slide slide-envelope">
+            <div class="envelope-container" onclick="document.getElementById('mainContainer').scrollBy(0, window.innerHeight)">
+                <h2 style="color: #600000; margin-bottom: 20px;">Sana Bir Mesaj Var! 💌</h2>
+                <div class="envelope-icon">
+                    <div class="seal"></div>
+                </div>
+                <p style="margin-top: 20px; color: #888; font-size: 0.9rem;">Açmak için tıkla veya aşağı kaydır</p>
+            </div>
+        </section>
+
+        <!-- SLAYT 2: KAPAK FOTOĞRAFI -->
+        <section class="slide slide-hero">
+            <h1>İyi ki Doğdun Sevgilim!</h1>
+            <p style="position: relative; z-index: 2; font-size: 1.2rem; margin-top: 10px;">Birlikte Nice Mutlu Yıllara...</p>
+            <div class="scroll-indicator">Aşağı Kaydır ↓</div>
+        </section>
+
+        <!-- SLAYT 3: MEKTUP -->
+        <section class="slide slide-letter">
+            <div class="letter-paper serif-text">
+                <h2 style="color: var(--bg-dark-red); font-size: 2.5rem; margin-bottom: 20px;">Senin İçin Bir Mektup</h2>
+                <p>Hayatın karşıma çıkardığı en güzel şanssın. Önümüzdeki yıllarda da ellerimiz hiç ayrılmasın, kahkahalarımız birbirine karışsın.</p>
+                <p>Beraber büyüyeceğimiz, yeni başarılar kutlayacağımız, dünyayı gezeceğimiz ve en zor anlarda bile birbirimize sığınacağımız nice mutlu yıllarımız olsun.</p>
+                <p style="text-align: right; font-weight: bold; margin-top: 20px;">Seni Çok Seviyorum ❤️</p>
+            </div>
+            <div class="scroll-indicator">Aşağı Kaydır ↓</div>
+        </section>
+
+        <!-- SLAYT 4: BEYAZ ARKA PLAN / POLAROID -->
+        <section class="slide slide-split">
+            <div class="polaroid">
+                <img src="11.jpeg" alt="Anı">
+            </div>
+            <div class="split-text serif-text">
+                <h2 style="color: var(--bg-dark-red); font-size: 2.5rem; margin-bottom: 15px; text-align: left;">Güzel Anılarımız...</h2>
+                <p>Seninle geçen her gün, hayatıma kattığın anlamı biraz daha büyütüyor. Birlikte güldüğümüz, gezdiğimiz ve paylaştığımız her an benim için paha biçilemez.</p>
+                <p style="margin-top: 10px;">İyi ki benimlesin.</p>
+            </div>
+            <div class="scroll-indicator" style="color: #888;">Aşağı Kaydır ↓</div>
+        </section>
+
+        <!-- SLAYT 5: MÜZİK VE FİLM ŞERİDİ -->
+        <section class="slide slide-music">
+            <div class="music-player">
+                <h3 style="margin-bottom: 15px; font-family: 'Dancing Script', cursive; font-size: 2rem;">Bizi Hatırlatan Şarkı</h3>
+                <!-- Buraya Spotify Embed Kodu Ekleyebilirsin -->
+                <iframe style="border-radius:12px" src="https://open.spotify.com/intl-tr/track/4eBE6hpwm7aJxIY4iwgwU8?si=4148a9e7620a4e4d" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            <div class="film-strip">
+                <img src="2.jpeg" alt="Film 1">
+                <img src="3.jpeg" alt="Film 2">
+                <img src="4.jpeg" alt="Film 3">
+            </div>
+            <div class="scroll-indicator">Aşağı Kaydır ↓</div>
+        </section>
+
+        <!-- SLAYT 6: POLAROID GALERİSİ -->
+        <section class="slide slide-gallery">
+            <div class="gallery-row">
+                <div class="polaroid"><img src="5.jpeg" alt="Galeri 1"></div>
+                <div class="polaroid"><img src="6.jpeg" alt="Galeri 2"></div>
+                <div class="polaroid"><img src="7.jpeg" alt="Galeri 3"></div>
+                <div class="polaroid"><img src="8.jpeg" alt="Galeri 4"></div>
+            </div>
+            <p class="gallery-text serif-text">Beni dünyanın en şanslı insanı yaptığın için teşekkür ederim. Hayatımın en büyük parçası olduğun için teşekkürler. İyi ki doğdun!</p>
+        </section>
+
+    </div>
+
+</body>
+</html>
